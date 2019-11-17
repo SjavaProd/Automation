@@ -1,40 +1,37 @@
 package com.homework1;
 
-import java.util.Scanner;
-
 enum Seasons {
     WINTER,
     SPRING,
     SUMMER,
-    FALL
+    AUTUMN
 }
 
 public class Task1 {
     public static void main(String[] args) {
-        //Implementation using try...catch blocks
-        try {
-            System.out.println("Enter the current season: ");
-            //User input
-            Scanner scan = new Scanner(System.in);
-            String userInput = scan.nextLine().toUpperCase();
-            Seasons var1 = Seasons.valueOf(userInput);
-            //Switch statement for console output
-            switch (var1) {
-                case WINTER:
-                    System.out.println("It`s COLD");
-                    break;
-                case SPRING:
-                    System.out.println("It`s WARM");
-                    break;
-                case SUMMER:
-                    System.out.println("It`s HOT");
-                    break;
-                case FALL:
-                    System.out.println("Winter is coming");
-                    break;
-            }
-        } catch (Exception e) {
-            System.out.println("Something went wrong! Please try again");
+        String text = getText();
+        String message = getMessage(text);
+        System.out.println("The following message for " + text + " season is: " + message);
+    }
+
+    private static String getText() {
+        return "summer".toUpperCase();
+    }
+
+    private static String getMessage(String input) {
+        Seasons seasons = Seasons.valueOf(input);
+        switch (seasons) {
+            case WINTER:
+                return "It`s cold";
+            case SPRING:
+                return "It`s warm";
+            case SUMMER:
+                return "It`s hot";
+            case AUTUMN:
+                return "Winter is coming";
+            default:
+                return null;
+
         }
     }
 }

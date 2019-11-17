@@ -1,44 +1,36 @@
 package com.homework1;
 
-import java.util.Scanner;
-
 public class Task3 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in); //User`s input
-        int fingers;
+        int number = getNumber();
+        String finger = getFingerNumber(number);
+        System.out.println(finger);
+    }
 
-        //Validation
-        do {
-            System.out.println("Enter your finger`s number (1-10)!)))");
-            while (!input.hasNextInt()) {
-                System.out.println("That not a number");
-                input.next();
-            }
-            fingers = input.nextInt();
-        } while (fingers < 0 || fingers > 10);
+    private static int getNumber() {
+        return 3;
+    }
 
-        //Switch statement for console output
-        switch (fingers) {
+    private static String getFingerNumber(int getNumber) {
+        switch (getNumber) {
             case 1:
             case 10:
-                System.out.println("Thumb");
-                break;
+                return "Thumb";
             case 2:
             case 9:
-                System.out.println("Fore finger");
-                break;
+                return "Fore finger";
             case 3:
             case 8:
-                System.out.println("Middle finger");
-                break;
+                return "Middle finger";
             case 4:
             case 7:
-                System.out.println("Ring finger");
-                break;
+                return "Ring finger";
             case 5:
             case 6:
-                System.out.println("Little finger");
-                break;
+                return "Little finger";
+            default:
+                return null;
         }
     }
+
 }

@@ -1,7 +1,5 @@
 package com.homework1;
 
-import java.util.Scanner;
-
 enum Days {
     MONDAY(false),
     TUESDAY(false),
@@ -23,20 +21,21 @@ enum Days {
 
 public class Task4 {
     public static void main(String[] args) {
-        try {
-            System.out.println("Enter the current day of the week!");
-            //User input
-            Scanner scan = new Scanner(System.in);
-            String userInput = scan.nextLine().toUpperCase();
-            Days var1 = Days.valueOf(userInput);
-
-            if (!var1.isWeekend())
-                System.out.println(var1 + " - is a workday!");
-            else
-                System.out.println(var1 + " - is a weekend!");
-
-        } catch (Exception e) {
-            System.out.println("Something went wrong! Please try again");
-        }
+        String day = getDay();
+        String dayOfTheWeek = getMessage(day);
+        System.out.println("The current day of the week (" + day + ")" + dayOfTheWeek);
     }
+
+    private static String getDay() {
+        return "saturday".toUpperCase();
+    }
+
+    private static String getMessage(String getDay) {
+        Days days = Days.valueOf(getDay);
+        if (!days.isWeekend())
+            return " - is a workday!";
+        else
+            return " - is a weekend!";
+    }
+
 }
