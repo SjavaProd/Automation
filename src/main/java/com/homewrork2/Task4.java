@@ -2,12 +2,17 @@ package com.homewrork2;
 
 public class Task4 {
     public static void main(String[] args) {
-        int[] array = {60, 99, 74, 42, 61, 13, 38, 59, 93, 82};
+        int counter = getCounter();
+        System.out.println(counter);
+    }
+
+    private static int getCounter() {
+        int[] array = {92, 90, 66, 57, 88, 79, 3, 84, 39, 94, 69, 15, 14, 43, 78, 76, 13, 12, 64, 11};
         int counter = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0 && array[i] % 3 != 0)
+        for (int value : array) {
+            if (value % 2 == 0 && value % 3 != 0)
                 counter++;
         }
-        System.out.println(counter);
+        return counter;
     }
 }
