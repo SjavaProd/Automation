@@ -1,35 +1,28 @@
 package com.homewrork2;
 
-import java.util.Scanner;
-
 public class Task2 {
     public static void main(String[] args) {
-        int[] array1 = getFirstArray();
-        int[] array2 = getModifiedArray(getFirstArray());
-        System.out.println("Show first array: ");
-        for (int value : array1) {
-            System.out.print(value + " ");
-        }
-        System.out.println();
-        System.out.println("Show modified array: ");
-        for (int value : array2) {
+        int[] array = getModifiedArray();
+        System.out.println("\nShow modified array: ");
+        for (int value : array) {
             System.out.print(value + " ");
         }
     }
 
-    private static int[] getFirstArray() {
-        return new int[]{60, 74, 42, 61, 13, 38, 59, 93, 82};
-    }
-
-    private static int[] getModifiedArray(int[] array1) {
+    private static int[] getModifiedArray() {
+        int[] array = {60, 74, 42, 61, 13, 38, 59, 93, 82};
         int t;
-        for (int a = 1; a < array1.length; a++) {
-            for (int b = array1.length - 1; b >= a; b--) {
-                t = array1[b - 1];
-                array1[b - 1] = array1[b];
-                array1[b] = t;
+        System.out.println("Show first array: ");
+        for (int value : array) {
+            System.out.print(value + " ");
+        }
+        for (int a = 1; a < array.length; a++) {
+            for (int b = array.length - 1; b >= a; b--) {
+                t = array[b - 1];
+                array[b - 1] = array[b];
+                array[b] = t;
             }
         }
-        return array1;
+        return array;
     }
 }
