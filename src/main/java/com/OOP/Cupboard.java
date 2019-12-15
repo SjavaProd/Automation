@@ -1,8 +1,8 @@
 package com.OOP;
 
-public class Cupboard extends Calculated {
-    public Cupboard(String material1, int priceMaterial1, int quantityMaterial1, String material2, int priceMaterial2, int quantityMaterial2) {
-        super(material1, priceMaterial1, quantityMaterial1, material2, priceMaterial2, quantityMaterial2);
+public class Cupboard extends Product {
+    public Cupboard(Material material1, int quantityMaterial1, Material material2, int quantityMaterial2) {
+        super(material1, quantityMaterial1, material2, quantityMaterial2);
     }
 
     public Cupboard(int employees, int hoursToMake) {
