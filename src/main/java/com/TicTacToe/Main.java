@@ -5,17 +5,16 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        String input = getString();
+        String input = getInput();
         boolean validation = validateInput(input);
-        boolean status = getStatus(input);
-//        if (input.contains("-")) {
-            boolean nextTurn = getNextTurn(input);
-//        } else {
-            boolean combination = getCombination(input);
-//        }
+        if (validation == true && input.contains("-")) {
+            boolean status = getStatus(input);
+        } else {
+            boolean winningCombination = getCombination(input);
+        }
     }
 
-    public static String getString() {
+    public static String getInput() {
         String input = "XOXOXOXOX";
         return input;
     }
@@ -26,7 +25,7 @@ public class Main {
         if (matcher.matches()) {
             return true;
         } else {
-//            System.out.println("Неправильный ввод");
+            System.out.println(Status.FIRST.getStatusValue());
             return false;
         }
     }
@@ -42,52 +41,23 @@ public class Main {
                 countO++;
             }
         }
-        if (countX > countO + 1 || countO > countX + 1) {
-//            System.out.println("Правильный ввод, некорректный статус");
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    public static boolean getNextTurn(String input) {
-        char[] arrayOfChars = input.toUpperCase().toCharArray();
-        int countX = 0;
-        int countO = 0;
-        for (int i = 0; i < arrayOfChars.length; i++) {
-            if (arrayOfChars[i] == 'X') {
-                countX++;
-            } else if (arrayOfChars[i] == 'O') {
-                countO++;
-            }
-        }
-        if (countX==countO){
-//            System.out.println("Корректный статус. Игра продолжается - крестики ходят");
+        if (countX > countO + 1 || countO > countX + 1) {
+            System.out.println(Status.SECOND.getStatusValue());
+            return false;
+        } else if (countX == countO) {
+            System.out.println(Status.SIXTH.getStatusValue());
             return true;
         } else {
-//            System.out.println("Корректный статус. Игра продолжается - нолики ходят");
-            return false;
+            System.out.println(Status.SEVENTH.getStatusValue());
+            return true;
         }
     }
 
     public static boolean getCombination(String input) {
-        Pattern pattern1 = Pattern.compile("^[X]{3}+\\D{6}$||^\\D{3}+[X]{3}+\\D{3}$||^\\D{6}+[X]$+" +
-                "^[X]+\\w{2}+[X]+\\w{2}+[X]+\\w{2}$||^\\w+[X]+\\w{2}+[X]+\\w{2}+[X]+\\w$||^\\w{2}+[X]+\\w{2}+[X]+\\{2}+[X]$+" +
-                "^[X]+\\w{3}+[X]+\\w{3}+[X]$||^\\w{2}+[X]+\\w+[X]+\\w{3}+[X]$", Pattern.CASE_INSENSITIVE);
-        Pattern pattern2 = Pattern.compile("^[O]{3}+\\D{6}$||^\\D{3}+[O]{3}+\\D{3}$||^\\D{6}+[O]$+" +
-                "^[O]+\\w{2}+[O]+\\w{2}+[O]+\\w{2}$||^\\w+[O]+\\w{2}+[O]+\\w{2}+[O]+\\w$||^\\w{2}+[O]+\\w{2}+[O]+\\{2}+[O]$+" +
-                "^[O]+\\w{3}+[O]+\\w{3}+[O]$||^\\w{2}+[O]+\\w+[O]+\\w{3}+[O]$", Pattern.CASE_INSENSITIVE);
-        Matcher matcher1 = pattern1.matcher(input);
-        Matcher matcher2 = pattern2.matcher(input);
-        if (matcher1.matches()) {
-//            System.out.println("Корректный статус. Игра закончена - крестики выиграли");
-            return true;
-        } else if (matcher2.matches()) {
-//            System.out.println("Корректный статус. Игра закончена - нолики выиграли");
-            return true;
-        } else {
-//            System.out.println("Корректный статус. Игра закончена - ничья");
-            return false;
-        }
+        if (input.charAt(0)=='X'&&input.charAt(1)=='X'&&input.charAt(2)=='X')
+            System.out.println(Status.FOURTH.getStatusValue());
+        return true;
     }
+
 }
