@@ -1,62 +1,102 @@
 package com.TicTacToe.test;
 
 import com.TicTacToe.Main;
+import com.TicTacToe.Status;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TicTacToeTest {
 
     @BeforeClass
-    public static void beforeClass(){
+    public static void beforeClass() {
         System.out.println("***Test is started***");
     }
 
     @Test
-    public void addTest(){
+    public void invalidInput() {
+        String input = "XOXO1OXOX";
+        Main.validateInput(input);
+    }
 
-        Main testExecution = new Main();
-        //getting string from the main method
-        String testInput = testExecution.getString();
-
-        //validation
-        boolean testValidation = testExecution.validateInput(testInput);
-        if (testValidation==true){
-            System.out.println("Validation is passed");
+    @Test
+    public void incorrectStatus() {
+        String input = "O--------";
+        Main.validateInput(input);
+        if (!Main.validateInput(input)) {
+            System.out.println(Status.FIRST.getStatusValue());
         } else {
-            System.out.println("Неправильный ввод");
+            Main.getStatus(input);
         }
+    }
 
-        //getting status of the game process
-        boolean testStatus = testExecution.getStatus(testInput);
-        if (testStatus==true){
-            System.out.println("Correct status");
+    @Test
+    public void nextTurnIsX() {
+        String input = "XXXXOOOO-";
+        Main.validateInput(input);
+        if (!Main.validateInput(input)) {
+            System.out.println(Status.FIRST.getStatusValue());
+        } else if (input.contains("-")) {
+            Main.getStatus(input);
         } else {
-            System.out.println("Правильный ввод, некорректный статус");
+            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
         }
+    }
 
-        //getting final result
-        if (testInput.contains("-")){
-            boolean testNextTurn = testExecution.getNextTurn(testInput);
-            if (testNextTurn==true){
-                System.out.println("Корректный статус. Игра продолжается - крестики ходят");
-            } else {
-                System.out.println("Корректный статус. Игра продолжается - нолики ходят");
-            }
+    @Test
+    public void nextTurnIsO() {
+        String input = "X--------";
+        Main.validateInput(input);
+        if (!Main.validateInput(input)) {
+            System.out.println(Status.FIRST.getStatusValue());
+        } else if (input.contains("-")) {
+            Main.getStatus(input);
         } else {
-            boolean testCombination = testExecution.getCombination(testInput);
-            if (testCombination==true){
-                System.out.println("Корректный статус. Игра закончена");
-            } else {
-                System.out.println("Корректный статус. Игра закончена - ничья");
-            }
+            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
         }
+    }
 
+    @Test
+    public void winnerIsX() {
+        String input = "XXXXOOOOX";
+        Main.validateInput(input);
+        if (!Main.validateInput(input)) {
+            System.out.println(Status.FIRST.getStatusValue());
+        } else if (input.contains("-")) {
+            Main.getStatus(input);
+        } else {
+            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
+        }
+    }
+
+    @Test
+    public void winnerIsO() {
+        String input = "XXOXOXOOX";
+        Main.validateInput(input);
+        if (!Main.validateInput(input)) {
+            System.out.println(Status.FIRST.getStatusValue());
+        } else if (input.contains("-")) {
+            Main.getStatus(input);
+        } else {
+            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
+        }
+    }
+
+    @Test
+    public void draw() {
+        String input = "XOXXXOOXO";
+        Main.validateInput(input);
+        if (!Main.validateInput(input)) {
+            System.out.println(Status.FIRST.getStatusValue());
+        } else if (input.contains("-")) {
+            Main.getStatus(input);
+        } else {
+            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
+        }
     }
 
     @AfterClass
-    public static void afterClass(){
+    public static void afterClass() {
         System.out.println("***Test is finished***");
     }
 
