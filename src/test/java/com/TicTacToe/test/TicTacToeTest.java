@@ -1,12 +1,20 @@
 package com.TicTacToe.test;
 
-import com.TicTacToe.Main;
-import com.TicTacToe.Status;
+import com.TicTacToe.GameScheme;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TicTacToeTest {
+public class TicTacToeTest extends GameScheme {
+
+    final String INVALID_INPUT = "123";
+    final String INCORRECT_STATUS = "-O-------";
+    final String DRAW = "XOXXXOOXO";
+    final String WINNER_IS_X = "XXXXOOOOX";
+    final String WINNER_IS_O = "XXOXOXOXO";
+    final String X_CONTINUES = "XXXXOOOO-";
+    final String O_CONTINUES = "XXXXOOO--";
 
     @BeforeClass
     public static void beforeClass() {
@@ -14,85 +22,45 @@ public class TicTacToeTest {
     }
 
     @Test
-    public void invalidInput() {
-        String input = "XOXO1OXOX";
-        Main.validateInput(input);
+    public void getInvalidInput() {
+        System.out.println(setStatus(INVALID_INPUT));
+        Assert.assertEquals(1, getNumber(INVALID_INPUT));
     }
 
     @Test
-    public void incorrectStatus() {
-        String input = "O--------";
-        Main.validateInput(input);
-        if (!Main.validateInput(input)) {
-            System.out.println(Status.FIRST.getStatusValue());
-        } else {
-            Main.getStatus(input);
-        }
+    public void getIncorrectStatus() {
+        System.out.println(setStatus(INCORRECT_STATUS));
+        Assert.assertEquals(2, getNumber(INCORRECT_STATUS));
     }
 
     @Test
-    public void nextTurnIsX() {
-        String input = "XXXXOOOO-";
-        Main.validateInput(input);
-        if (!Main.validateInput(input)) {
-            System.out.println(Status.FIRST.getStatusValue());
-        } else if (input.contains("-")) {
-            Main.getStatus(input);
-        } else {
-            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
-        }
+    public void getDraw() {
+        System.out.println(setStatus(DRAW));
+        Assert.assertEquals(3, getNumber(DRAW));
     }
 
     @Test
-    public void nextTurnIsO() {
-        String input = "X--------";
-        Main.validateInput(input);
-        if (!Main.validateInput(input)) {
-            System.out.println(Status.FIRST.getStatusValue());
-        } else if (input.contains("-")) {
-            Main.getStatus(input);
-        } else {
-            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
-        }
+    public void getWinnerX() {
+        System.out.println(setStatus(WINNER_IS_X));
+        Assert.assertEquals(4, getNumber(WINNER_IS_X));
     }
 
     @Test
-    public void winnerIsX() {
-        String input = "XXXXOOOOX";
-        Main.validateInput(input);
-        if (!Main.validateInput(input)) {
-            System.out.println(Status.FIRST.getStatusValue());
-        } else if (input.contains("-")) {
-            Main.getStatus(input);
-        } else {
-            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
-        }
+    public void getWinnerO() {
+        System.out.println(setStatus(WINNER_IS_O));
+        Assert.assertEquals(5, getNumber(WINNER_IS_O));
     }
 
     @Test
-    public void winnerIsO() {
-        String input = "XXOXOXOOX";
-        Main.validateInput(input);
-        if (!Main.validateInput(input)) {
-            System.out.println(Status.FIRST.getStatusValue());
-        } else if (input.contains("-")) {
-            Main.getStatus(input);
-        } else {
-            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
-        }
+    public void getXContinues() {
+        System.out.println(setStatus(X_CONTINUES));
+        Assert.assertEquals(6, getNumber(X_CONTINUES));
     }
 
     @Test
-    public void draw() {
-        String input = "XOXXXOOXO";
-        Main.validateInput(input);
-        if (!Main.validateInput(input)) {
-            System.out.println(Status.FIRST.getStatusValue());
-        } else if (input.contains("-")) {
-            Main.getStatus(input);
-        } else {
-            Main.getCombination(input, Main.xOrO(input, Main.winningCombinationsIndexes()));
-        }
+    public void getOContinues() {
+        System.out.println(setStatus(O_CONTINUES));
+        Assert.assertEquals(7, getNumber(O_CONTINUES));
     }
 
     @AfterClass
