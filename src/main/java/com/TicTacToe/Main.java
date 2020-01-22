@@ -43,22 +43,14 @@ public class Main {
         }
     }
 
-    public boolean isSomebodyContinue(String input, char xOrO){
+    public boolean isSomebodyContinue(String input){
         int countX = xCount(input);
         int countO = oCount(input);
-        if (countX == countO || countX > countO) {
+        if (countX == countO) {
             return true;
         } else {
             return false;
         }
-    }
-
-    public boolean isXContinue (String input, char xOrO){
-        return isSomebodyContinue(input, 'X');
-    }
-
-    public boolean isOContinue (String input, char xOrO){
-        return isSomebodyContinue(input, 'O');
     }
 
     public int[][] winningCombinationsIndexes() {

@@ -13,8 +13,8 @@ public class TicTacToeTest extends GameScheme {
     final String INCORRECT_STATUS = "O--------";
     final String DRAW = "XOXXXOOXO";
     final String WINNER_IS_X = "XXXXOOOOX";
-    final String WINNER_IS_O = "XXOXOXOXO";
-    final String X_CONTINUES = "XO-------";
+    final String WINNER_IS_O = "XXOOOOXX-";
+    final String X_CONTINUES = "XX-OO----";
     final String O_CONTINUES = "XOX------";
 
     @BeforeClass

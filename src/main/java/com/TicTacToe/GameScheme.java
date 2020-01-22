@@ -14,9 +14,9 @@ public class GameScheme extends Main {
                 } else if (isSomebodyWin(input, 'O')) {
                     return 5;
                 } else {
-                    if (isXContinue(input, 'X')) {
+                    if (input.contains("-") && isSomebodyContinue(input)) {
                         return 6;
-                    } else if (isOContinue(input, 'O')) {
+                    } else if (input.contains("-") && !isSomebodyContinue(input)) {
                         return 7;
                     } else {
                         return 3;
