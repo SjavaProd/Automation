@@ -1,28 +1,29 @@
 package com.TicTacToe;
 
-public class GameScheme extends Main{
-    
-    public int getNumber(String input){
+public class GameScheme extends Main {
+
+    public int getNumber(String input) {
         if (!validateInput(input)) {
             return 1;
-        } else if (input.contains("-")) {
-            if (getStatus(input) == 2) {
-                return 2;
-            } else if (getStatus(input) == 6) {
-                return 6;
-            } else if (getStatus(input) == 7) {
-                return 7;
-            }
         } else {
-            xOrO(input, winningCombinationsIndexes());
-            getCombination(input, xOrO(input, winningCombinationsIndexes()));
-            if (getCombination(input, xOrO(input, winningCombinationsIndexes())) == 4) {
-                return 4;
-            } else if (getCombination(input, xOrO(input, winningCombinationsIndexes())) == 5) {
-                return 5;
+            if (!statusValidation(input) || (isOWin(input, 'O') && isXWin(input, 'X'))) {
+                return 2;
+            } else {
+                if (isSomebodyWin(input, 'X')) {
+                    return 4;
+                } else if (isSomebodyWin(input, 'O')) {
+                    return 5;
+                } else {
+                    if (isXContinue(input, 'X')) {
+                        return 6;
+                    } else if (isOContinue(input, 'O')) {
+                        return 7;
+                    } else {
+                        return 3;
+                    }
+                }
             }
         }
-        return 3;
     }
 
     public String setStatus(String input) {

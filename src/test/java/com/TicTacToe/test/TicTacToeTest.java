@@ -10,12 +10,12 @@ import org.junit.Test;
 public class TicTacToeTest extends GameScheme {
 
     final String INVALID_INPUT = "123";
-    final String INCORRECT_STATUS = "-O-------";
+    final String INCORRECT_STATUS = "O--------";
     final String DRAW = "XOXXXOOXO";
     final String WINNER_IS_X = "XXXXOOOOX";
     final String WINNER_IS_O = "XXOXOXOXO";
-    final String X_CONTINUES = "XXXXOOOO-";
-    final String O_CONTINUES = "XXXXOOO--";
+    final String X_CONTINUES = "XO-------";
+    final String O_CONTINUES = "XOX------";
 
     @BeforeClass
     public static void beforeClass() {
